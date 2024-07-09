@@ -87,7 +87,7 @@ echo -e "\\ndefine Device/ys_f3588a
 \$(call Device/rk3588)
   DEVICE_VENDOR := Rockchip
   DEVICE_MODEL := RK3588 EVB7 LP4 V10 Board
-  DEVICE_DTS := YS-F3588A3
+  DEVICE_DTS := YS-F3588A
   SUPPORTED_DEVICES += ys,f3588a
   DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal kmod-rkwifi-bcmdhd-pcie rkwifi-firmware-ap6275p ys-f3588a-firmware
 endef
