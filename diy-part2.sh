@@ -104,16 +104,16 @@ echo -e "\\ndefine Device/rk3588-tests7
 endef
 TARGET_DEVICES += rk3588-tests7" >> target/linux/rockchip/image/rk35xx.mk
 
-#增加RK3566-HJQ
-echo -e "\\ndefine Device/rk3566_hjq
-\$(call Device/rk3566)
+# 增加cyber-aib
+echo -e "\\ndefine Device/rk3588-cyber-aib
+\$(call Device/rk3588)
   DEVICE_VENDOR := Rockchip
-  DEVICE_MODEL := RK3566 EVB2 LP4X V10 Board
-  DEVICE_DTS := rk3566-odroid-m1s
-  SUPPORTED_DEVICES += rk3566,hjq
-  DEVICE_PACKAGES := kmod-scsi-core kmod-rtl8723ds kmod-hwmon-pwmfan kmod-thermal kmod-switch-rtl8367b swconfig
+  DEVICE_MODEL := RK3588 EVB4 LP4 V10 Board
+  DEVICE_DTS := rk3588-cyber-aib
+  SUPPORTED_DEVICES += rk3588,cyber-aib
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal
 endef
-TARGET_DEVICES += rk3566_hjq" >> target/linux/rockchip/image/rk35xx.mk
+TARGET_DEVICES += rk3588-cyber-aib" >> target/linux/rockchip/image/rk35xx.mk
 
 cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se-core.dtsi target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se-core.dtsi
 cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se.dts target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se.dts
@@ -123,6 +123,7 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3566-odroid-m1s.dts target/linux/rockchip/
 # cp -f $GITHUB_WORKSPACE/configfiles/rk3588.dtsi target/linux/rockchip/dts/rk3588/rk3588.dtsi
 cp -f $GITHUB_WORKSPACE/configfiles/rk3588-sige7-v1.dts target/linux/rockchip/dts/rk3588/rk3588-sige7-v1.dts
 cp -f $GITHUB_WORKSPACE/configfiles/rk3588-sige7-v1-1.dts target/linux/rockchip/dts/rk3588/rk3588-sige7-v1-1.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-cyber-aib.dts target/linux/rockchip/dts/rk3588/rk3588-cyber-aib.dts
 
 
 
