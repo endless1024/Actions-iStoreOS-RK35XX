@@ -65,11 +65,11 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 
 
 
-# 增加ido3568 DG NAS LITE
+# 增加ido3568 DG NAS
 echo -e "\\ndefine Device/dg_nas
 \$(call Device/rk3568)
   DEVICE_VENDOR := DG
-  DEVICE_MODEL := NAS LITE
+  DEVICE_MODEL := NAS
   DEVICE_DTS := rk3568-firefly-roc-pc-se
   SUPPORTED_DEVICES += dg,nas
   DEVICE_PACKAGES := kmod-nvme kmod-scsi-core
@@ -82,18 +82,56 @@ sed -i "s/panther,x2|\\\/&\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-fi
 
 sed -i "s/panther,x2|\\\/&\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
 
+# 增加YS-F3588A
+echo -e "\\ndefine Device/ys_f3588a
+\$(call Device/rk3588)
+  DEVICE_VENDOR := Rockchip
+  DEVICE_MODEL := RK3588 EVB7 LP4 V10 Board
+  DEVICE_DTS := YS-F3588A
+  SUPPORTED_DEVICES += ys,f3588a
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal kmod-rkwifi-bcmdhd-pcie rkwifi-firmware-ap6275p ys-f3588a-firmware
+endef
+TARGET_DEVICES += ys_f3588a" >> target/linux/rockchip/image/rk35xx.mk
+
+# 增加RK3588-ArmSoM-sige7
+echo -e "\\ndefine Device/rk3588-tests7
+\$(call Device/rk3588)
+  DEVICE_VENDOR := Rockchip
+  DEVICE_MODEL := ArmSoM RK3588 sige7 Board V1.1
+  DEVICE_DTS := rk3588-sige7-v1-1
+  SUPPORTED_DEVICES += rk3588,tests7
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal kmod-rkwifi-bcmdhd-pcie rkwifi-firmware-ap6275p
+endef
+TARGET_DEVICES += rk3588-tests7" >> target/linux/rockchip/image/rk35xx.mk
+
+# 增加cyber-aib
+echo -e "\\ndefine Device/rk3588-cyber-aib
+\$(call Device/rk3588)
+  DEVICE_VENDOR := Rockchip
+  DEVICE_MODEL := RK3588 EVB4 LP4 V10 Board
+  DEVICE_DTS := rk3588-cyber-aib
+  SUPPORTED_DEVICES += rk3588,cyber-aib
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal
+endef
+TARGET_DEVICES += rk3588-cyber-aib" >> target/linux/rockchip/image/rk35xx.mk
 
 cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se-core.dtsi target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se-core.dtsi
-
 cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se.dts target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3568-dg-nas.dts target/linux/rockchip/dts/rk3568/rk3568-dg-nas.dts
+cp -f $GITHUB_WORKSPACE/configfiles/YS-F3588A.dts target/linux/rockchip/dts/rk3588/YS-F3588A.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3566-odroid-m1s.dts target/linux/rockchip/dts/rk3568/rk3566-odroid-m1s.dts
+# cp -f $GITHUB_WORKSPACE/configfiles/rk3588.dtsi target/linux/rockchip/dts/rk3588/rk3588.dtsi
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-sige7-v1.dts target/linux/rockchip/dts/rk3588/rk3588-sige7-v1.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-sige7-v1-1.dts target/linux/rockchip/dts/rk3588/rk3588-sige7-v1-1.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-cyber-aib.dts target/linux/rockchip/dts/rk3588/rk3588-cyber-aib.dts
 
 
 
 #轮询检查ubus服务是否崩溃，崩溃就重启ubus服务
 cp -f $GITHUB_WORKSPACE/configfiles/httpubus package/base-files/files/etc/init.d/httpubus
-cp -f $GITHUB_WORKSPACE/configfiles/ubus-examine.sh package/base-files/files/bin/ubus-examine.sh
+cp -f $GITHUB_WORKSPACE/configfiles/ubus-status.sh package/base-files/files/bin/ubus-status.sh
 chmod 755 package/base-files/files/etc/init.d/httpubus
-chmod 755 package/base-files/files/bin/ubus-examine.sh
+chmod 755 package/base-files/files/bin/ubus-status.sh
 
 
 
