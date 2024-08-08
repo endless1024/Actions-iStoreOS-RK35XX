@@ -101,7 +101,7 @@ echo -e "\\ndefine Device/rk3588-cyber-aib
   DEVICE_MODEL := RK3588 EVB4 LP4 V10 Board
   DEVICE_DTS := rk3588-cyber-aib
   SUPPORTED_DEVICES += rk3588,cyber-aib
-  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-hwmon-pwmfan kmod-thermal kmod-scsi-core
 endef
 TARGET_DEVICES += rk3588-cyber-aib" >> target/linux/rockchip/image/rk35xx.mk
 
